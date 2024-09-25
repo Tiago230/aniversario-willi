@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ANIVERSÁRIO WILLI</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        p {
+            color: rgb(3, 0, 0);
+            text-align: center;
+            font-size: 150px;
+            margin-top: 200px;
+        }
+        body {
+            background-image: url('imagem/wili1.jpeg'); /* Imagem inicial */
+            background-color: rgb(95, 42, 88);
+            background-repeat: no-repeat;
+            background-size: 40%; /* Ajusta para caber na tela */
+            background-position: center center; /* Centraliza a imagem */
+        }
+        /* Estilo para o botão */
+        #play-button {
+            display: block; /* Faz o botão ser um bloco */
+            margin: 20px auto; /* Centraliza o botão */
+            padding: 10px 20px; /* Tamanho do botão */
+            font-size: 20px; /* Tamanho da fonte */
+            cursor: pointer; /* Cursor de mão */
+            background-color: #4CAF50; /* Cor de fundo */
+            color: white; /* Cor do texto */
+            border: none; /* Sem borda */
+            border-radius: 5px; /* Cantos arredondados */
+        }
+        #play-button:hover {
+            background-color: #45a049; /* Cor ao passar o mouse */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TEMPO ESTIMADO PARA O ANIVERSÁRIO DA WILLI.</h1>
+
+    <!-- Música de fundo inicial -->
+    <audio id="bg-music" loop>
+        <source src="audio/SambaVibes.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <!-- Botão para tocar música -->
+    <button id="play-button">Play</button>
+
+    <p id="demo"></p>
+
+    <script>
+        // Define a data para a qual estamos em contagem regressiva
+        var countDownDate = new Date("Sep 26, 2024 00:00:00").getTime();
+
+        // Atualize a contagem regressiva a cada 1 segundo
+        var x = setInterval(function() {
+            // Obter data e hora de hoje
+            var now = new Date().getTime();
+            
+            // Encontre a distância entre agora e a data de contagem regressiva
+            var distance = countDownDate - now;
+            
+            // Cálculos de tempo para dias, horas, minutos e segundos
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Exibir o resultado no elemento com id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+            
+            // Se a contagem regressiva terminar
+            if (distance < 0) {
+                clearInterval(x);
+
+                // Troca a imagem de fundo
+                document.body.style.backgroundImage = "url('imagem/wili2.jpeg')"; // Nova imagem
+                document.body.style.backgroundSize = "contain"; // Ajusta a nova imagem para caber na tela
+                document.body.style.backgroundPosition = "center center"; // Centraliza a nova imagem
+
+                // Tocar uma nova música
+                var audio = document.getElementById("bg-music");
+                audio.pause();  // Para a música atual
+                audio.innerHTML = '<source src="audio/Benson.mp3" type="audio/mpeg">'; // Troca o arquivo de música
+                audio.load();  // Carrega a nova música
+                audio.play();  // Toca a nova música
+
+                // Exibir a mensagem "Feliz Aniversário"
+                document.getElementById("demo").innerHTML = "FELIZ ANIVERSÁRIO, WILLI! 🎉";
+            }
+        }, 1000);
+
+        // Função para tocar a música
+        document.getElementById("play-button").onclick = function() {
+            var audio = document.getElementById("bg-music");
+            audio.play(); // Toca a música
+        };
+    </script>
+
+</body>
+</html>

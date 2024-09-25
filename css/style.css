@@ -1,0 +1,13 @@
+body {
+   background-image: url('/imagem/wili1.jpeg');
+    background-color: rgb(10, 10, 10);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position:center;
+    background-attachment: fixed; /* Mantém a imagem fixa enquanto a página rola */
+}
+
+h1 {
+    color: rgb(3, 6, 8);
+    text-align: center;
+}
